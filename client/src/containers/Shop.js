@@ -45,8 +45,8 @@ class Shop extends Component {
   }
 
   fetchData = () => {
-    return (//axios.get('http://api.bcfmanufacturing.com/manufacturing', {headers: {authorization: 'cschmidtbcf'}})
-    axios.get('http://localhost:5001/manufacturing/shop', {headers: {authorization: 'cschmidtbcf'}})
+    return (axios.get('http://api.bcfmanufacturing.com/manufacturing/shop', {headers: {authorization: 'cschmidtbcf'}})
+    //axios.get('http://localhost:5001/manufacturing/shop', {headers: {authorization: 'cschmidtbcf'}})
       .then((response) => {
         let res = JSON.parse(response.data)
         if (res["LATHES"] !== undefined && res["MILLS"] !== undefined) {

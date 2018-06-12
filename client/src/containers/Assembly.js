@@ -48,8 +48,8 @@ class Assembly extends Component {
   }
 
   fetchData = () => {
-    return (//axios.get('http://api.bcfmanufacturing.com/manufacturing', {headers: {authorization: 'cschmidtbcf'}})
-    axios.get('http://localhost:5001/manufacturing/assembly', {headers: {authorization: 'cschmidtbcf'}})
+    return (axios.get('http://api.bcfmanufacturing.com/manufacturing/assembly', {headers: {authorization: 'cschmidtbcf'}})
+    //axios.get('http://localhost:5001/manufacturing/assembly', {headers: {authorization: 'cschmidtbcf'}})
       .then((response) => {
         let res = JSON.parse(response.data)
         let resKeys = Object.keys(res)

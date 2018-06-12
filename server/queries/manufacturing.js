@@ -4,15 +4,19 @@ function Results() {
   return knex('schedules');
 }
 
-function addSchedule(schedule) {
+function addSchedule(schedule, location) {
   return Results()
           .insert({
-            'schedule': schedule
+            'schedule': schedule,
+            'location': location
           })
 }
 
 function getSchedule(schedule) {
   return Results()
+          .where({
+            'location': schedule
+          })
           .max('schedule_id')
             .then( res => {
               return (Results()

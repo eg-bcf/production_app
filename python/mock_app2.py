@@ -25,11 +25,11 @@ for i in range(0,len(newmills)):
                 NEWFDATE = FDATE.split('T')
                 NEWFTIME = NEWFDATE[1][0:5]
                 newmills[i]['FINISH JOB'] = NEWFDATE[0] + " " +  NEWFTIME
-            if newmills[i]['NEED    DATE      '] != None:
-                NDATE = newmills[i]['NEED    DATE      ']
+            if newmills[i]['NEED DATE'] != None:
+                NDATE = newmills[i]['NEED DATE']
                 NEWNDATE = NDATE.split('T')
                 NEWNTIME = NEWNDATE[1][0:5]
-                newmills[i]['NEED    DATE      '] = NEWNDATE[0] + " " +  NEWNTIME
+                newmills[i]['NEED DATE'] = NEWNDATE[0] + " " +  NEWNTIME
             x.append(newmills[i])
 #print(x)
 
@@ -70,4 +70,6 @@ newSchedule = {}
 newSchedule["MILLS"] = x
 newSchedule["LATHES"] = y
 newSchedule = json.dumps(newSchedule)
-r = requests.post('http://localhost:5001/manufacturing', data = {'schedule': newSchedule, 'secret': 'cschmidtbcf' })
+print(newSchedule)
+#r = requests.post('http://api.bcfmanufacturing.com/manufacturing', data = {'schedule': newSchedule, 'secret': 'cschmidtbcf' })
+r = requests.post('http://localhost:5001/manufacturing/shop', data = {'schedule': newSchedule, 'secret': 'cschmidtbcf' })

@@ -4,9 +4,9 @@ var secret = 'cschmidtbcf';
 
 module.exports = app => {
 
-  app.post('/manufacturing', function(req, res, next) {
+  app.post('/manufacturing/:location', function(req, res, next) {
     if (req.body.secret === secret) {
-      queries.addSchedule(JSON.stringify(req.body.schedule))
+      queries.addSchedule(JSON.stringify(req.body.schedule), req.params.location)
         .then(function(result) {
           res.json(result);
         })
@@ -16,11 +16,11 @@ module.exports = app => {
     }
 
   });
-  app.get('/manufacturing', function(req, res, next) {
+  app.get('/manufacturing/:location', function(req, res, next) {
     if (req.headers.authorization === secret) {
-      queries.getSchedule().then(result =>
+      queries.getSchedule(req.params.location).then(result => {
         res.json(JSON.parse(result[0]['schedule']))
-      );
+      });
     }
     else {
       res.json({ message: 'The secret provided was incorrect' });
